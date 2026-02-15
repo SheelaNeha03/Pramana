@@ -1,2 +1,8 @@
-# Pramana
-Pramana is a self-configurable, AI-enabled governance transparency and observability platform designed to strengthen public institutions through data-driven governance. It enables governments to measure performance, improve accountability, and build public trust—without replacing human decision-makers or employees.
+# Pramana – Governance Transparency Platform
+
+**Pramana** is a self-configurable, AI-enabled governance observability platform that empowers public institutions to operate effectively, transparently, and fairly. It improves accountability, tracks performance, and provides actionable insights — without replacing government employees.
+
+## Vision
+> Evidence-based governance through measurable transparency.
+
+... (Paste the full README content from earlier here) ...
