@@ -4,5 +4,3 @@
 
 ## Vision
 > Evidence-based governance through measurable transparency.
-
-... (Paste the full README content from earlier here) ...
