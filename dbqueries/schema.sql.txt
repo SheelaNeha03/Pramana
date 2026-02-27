@@ -1,0 +1,162 @@
+-- =====================================================
+-- Government School Monitoring System
+-- Database Schema
+-- =====================================================
+
+-- =========================
+-- SCHOOL MASTER
+-- =========================
+CREATE TABLE school (
+    school_id SERIAL PRIMARY KEY,
+    school_code VARCHAR(50) UNIQUE,
+    school_name VARCHAR(255) NOT NULL,
+    school_type VARCHAR(50),              -- Primary / Secondary / High School
+    management_type VARCHAR(50),          -- Government / Aided
+    district VARCHAR(100),
+    block VARCHAR(100),
+    village_or_ward VARCHAR(100),
+    established_year INT,
+    principal_name VARCHAR(255)
+);
+
+-- =========================
+-- CLASS
+-- =========================
+CREATE TABLE class (
+    class_id SERIAL PRIMARY KEY,
+    school_id INT REFERENCES school(school_id),
+    grade INT CHECK (grade BETWEEN 1 AND 12),
+    section VARCHAR(10),
+    academic_year VARCHAR(9)              -- e.g. 2024-25
+);
+
+-- =========================
+-- STUDENT
+-- =========================
+CREATE TABLE student (
+    student_id SERIAL PRIMARY KEY,
+    school_id INT REFERENCES school(school_id),
+    class_id INT REFERENCES class(class_id),
+    admission_number VARCHAR(50) UNIQUE,
+    student_name VARCHAR(255),
+    gender VARCHAR(20),
+    dob DATE,
+    caste_category VARCHAR(50),
+    enrolment_date DATE,
+    status VARCHAR(30) DEFAULT 'Active'   -- Active / Dropped / Transferred
+);
+
+-- =========================
+-- TEACHER
+-- =========================
+CREATE TABLE teacher (
+    teacher_id SERIAL PRIMARY KEY,
+    school_id INT REFERENCES school(school_id),
+    teacher_name VARCHAR(255),
+    designation VARCHAR(100),
+    qualification VARCHAR(100),
+    subject_specialization VARCHAR(100),
+    date_of_joining DATE,
+    employment_type VARCHAR(50)           -- Permanent / Contract
+);
+
+-- =========================
+-- STUDENT ATTENDANCE
+-- =========================
+CREATE TABLE student_attendance (
+    attendance_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES student(student_id),
+    attendance_date DATE,
+    status VARCHAR(10),                   -- Present / Absent
+    reason VARCHAR(255)
+);
+
+-- =========================
+-- TEACHER ATTENDANCE
+-- =========================
+CREATE TABLE teacher_attendance (
+    attendance_id SERIAL PRIMARY KEY,
+    teacher_id INT REFERENCES teacher(teacher_id),
+    attendance_date DATE,
+    status VARCHAR(10)
+);
+
+-- =========================
+-- SUBJECT MASTER
+-- =========================
+CREATE TABLE subject (
+    subject_id SERIAL PRIMARY KEY,
+    subject_name VARCHAR(100) UNIQUE
+);
+
+-- =========================
+-- EXAM MASTER
+-- =========================
+CREATE TABLE exam (
+    exam_id SERIAL PRIMARY KEY,
+    exam_name VARCHAR(100),               -- Unit Test, Midterm, Final
+    exam_type VARCHAR(50),                -- Internal / External / Board
+    academic_year VARCHAR(9),
+    max_marks INT
+);
+
+-- =========================
+-- EXAM RESULTS
+-- =========================
+CREATE TABLE exam_result (
+    result_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES student(student_id),
+    exam_id INT REFERENCES exam(exam_id),
+    subject_id INT REFERENCES subject(subject_id),
+    marks_obtained INT,
+    grade VARCHAR(10),
+    pass_status BOOLEAN
+);
+
+-- =========================
+-- INTERNAL ASSESSMENT
+-- =========================
+CREATE TABLE internal_assessment (
+    assessment_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES student(student_id),
+    subject_id INT REFERENCES subject(subject_id),
+    assessment_type VARCHAR(50),          -- Assignment / Class Test / Project
+    assessment_date DATE,
+    marks_obtained INT,
+    max_marks INT
+);
+
+-- =========================
+-- SPORTS PARTICIPATION
+-- =========================
+CREATE TABLE sports_participation (
+    sports_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES student(student_id),
+    sport_name VARCHAR(100),
+    level VARCHAR(50),                    -- School / Block / District / State
+    participation_date DATE,
+    achievement VARCHAR(255)
+);
+
+-- =========================
+-- SOCIAL & CO-CURRICULAR ACTIVITIES
+-- =========================
+CREATE TABLE activity_participation (
+    activity_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES student(student_id),
+    activity_type VARCHAR(100),           -- NCC / NSS / Debate / Drama
+    role VARCHAR(50),                     -- Member / Leader
+    start_date DATE,
+    end_date DATE
+);
+
+-- =========================
+-- SCHOOL FACILITIES
+-- =========================
+CREATE TABLE school_facility (
+    facility_id SERIAL PRIMARY KEY,
+    school_id INT REFERENCES school(school_id),
+    facility_type VARCHAR(100),           -- Library / Lab / Playground
+    availability BOOLEAN,
+    condition VARCHAR(50)                 -- Good / Average / Poor
+);
