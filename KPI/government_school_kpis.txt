@@ -1,0 +1,61 @@
+
+GOVERNMENT SCHOOL KPI DOCUMENTATION
+
+ACADEMIC KPIs
+1. Average Internal Assessment Score
+Formula: AVG(marks_obtained / max_marks) * 100
+
+2. Exam Pass Percentage
+Formula: (Passed Students / Students Appeared) * 100
+
+3. Subject-wise Performance Index
+Weighted average of subject marks across exams
+
+4. Academic Growth Rate
+Formula: Current Year Avg Score - Previous Year Avg Score
+
+
+ATTENDANCE KPIs
+5. Student Attendance Rate
+Formula: (Present Days / Working Days) * 100
+
+6. Chronic Absenteeism Rate
+Definition: Students with attendance less than 75%
+
+7. Teacher Attendance Compliance
+Formula: (Teacher Present Days / Working Days) * 100
+
+
+SPORTS KPIs
+8. Sports Participation Rate
+Formula: (Students participating in at least one sport / Total students) * 100
+
+9. Sports Achievement Score
+District Level = 2 points
+State Level = 4 points
+National Level = 6 points
+
+
+SOCIAL & CO-CURRICULAR KPIs
+10. Co-Curricular Engagement Index
+Formula: (Students participating in activities / Total students)
+
+11. Leadership Participation Rate
+Formula: (Students with leadership roles / Total activity participants)
+
+
+INFRASTRUCTURE KPIs
+12. Facility Availability Index
+Formula: Available facilities / Required facilities
+
+13. School Readiness Index
+Composite of infrastructure, teacher availability, and attendance
+
+
+COMPOSITE SCHOOL PERFORMANCE INDEX (SPI)
+SPI = 
+0.35 * Academic Score +
+0.25 * Attendance Score +
+0.15 * Sports Score +
+0.15 * Activity Score +
+0.10 * Infrastructure Score
